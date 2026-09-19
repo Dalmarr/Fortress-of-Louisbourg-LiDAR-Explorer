@@ -1,0 +1,179 @@
+# Fortress of Louisbourg LiDAR Explorer
+# Public portfolio repository
+#
+# Intent:
+# - Keep the repository lean and presentation-focused.
+# - Publish only selected point-cloud renderer samples.
+# - Exclude core runtime orchestration, project-specific UI, large GIS data,
+#   ArcGIS Pro working files, Unity project scaffolding, caches, and builds.
+
+
+# ---------------------------------------------------------------------------
+# OS / IDE / editor noise
+# ---------------------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+.vs/
+.vscode/
+.idea/
+
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.sln
+
+
+# ---------------------------------------------------------------------------
+# Python / generated caches
+# ---------------------------------------------------------------------------
+
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Python automation is intentionally excluded from the public portfolio repo.
+/scripts/
+
+
+# ---------------------------------------------------------------------------
+# GIS source / processed data
+# ---------------------------------------------------------------------------
+
+# Large source and derived geospatial datasets are intentionally excluded.
+# Keep only a small explanatory data/README.md if one is added.
+/data/*
+!/data/README.md
+
+# Safety net for common large GIS formats anywhere in the repository.
+*.las
+*.laz
+*.lasd
+*.slpk
+*.tif
+*.tiff
+*.img
+*.jp2
+*.sid
+*.bil
+*.bip
+*.bsq
+
+*.gdb/
+*.geodatabase
+
+# ArcGIS Pro project/tooling and generated project internals are private.
+/gis/
+
+# Common ArcGIS generated history/index artifacts.
+*.pyHistory
+**/GpMessages/
+**/ImportLog/
+**/Index/
+
+
+# ---------------------------------------------------------------------------
+# References
+# ---------------------------------------------------------------------------
+
+# Retain only the curated source/provenance document.
+/references/*
+!/references/sources.md
+
+
+# ---------------------------------------------------------------------------
+# Outputs / portfolio media
+# ---------------------------------------------------------------------------
+
+# Keep final screenshots, but omit other generated output folders by default.
+/outputs/*
+!/outputs/screenshots/
+/outputs/screenshots/*
+!/outputs/screenshots/*.png
+!/outputs/screenshots/*.jpg
+!/outputs/screenshots/*.jpeg
+!/outputs/screenshots/*.webp
+!/outputs/screenshots/*.gif
+
+# Empty placeholder folders are not useful in the public repository.
+**/.gitkeep
+
+
+# ---------------------------------------------------------------------------
+# Unity - generated folders / build artifacts
+# ---------------------------------------------------------------------------
+
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/[Mm]emoryCaptures/
+**/[Rr]ecordings/
+
+[Bb]uild/
+[Bb]uilds/
+[Dd]ist/
+[Rr]elease/
+
+*.unitypackage
+
+# Unity metadata is unnecessary because this public repo is not intended to
+# be a complete, directly-openable Unity project.
+*.meta
+
+
+# ---------------------------------------------------------------------------
+# Unity - curate the public source surface
+# ---------------------------------------------------------------------------
+
+# Ignore everything directly under Assets first...
+/unity/LouisbourgExplorer/Assets/*
+
+# ...then retain only the Scripts directory...
+!/unity/LouisbourgExplorer/Assets/Scripts/
+
+# ...ignore every script by default...
+/unity/LouisbourgExplorer/Assets/Scripts/*
+
+# ...and publish only the renderer samples selected for the portfolio.
+!/unity/LouisbourgExplorer/Assets/Scripts/ClassificationRenderer.cs
+!/unity/LouisbourgExplorer/Assets/Scripts/ElevationRenderer.cs
+!/unity/LouisbourgExplorer/Assets/Scripts/IntensityRenderer.cs
+!/unity/LouisbourgExplorer/Assets/Scripts/RGBRenderer.cs
+
+# Core orchestration and application-specific implementation remain private:
+# FindPointCloud.cs
+# PointClassFilter.cs
+# RendererTransition.cs
+# WipeRevealController.cs
+# RendererControls.cs
+# LouisbourgUIPanel.cs
+# LouisbourgViewpoints.cs
+# ViewpointTransition.cs
+# StartupFade.cs
+
+# Do not publish Unity packages or project configuration for the curated repo.
+/unity/LouisbourgExplorer/Packages/
+/unity/LouisbourgExplorer/ProjectSettings/
+
+# Explicit safety net for bundled runtime data.
+/unity/LouisbourgExplorer/Assets/StreamingAssets/
+
+
+# ---------------------------------------------------------------------------
+# Secrets / local configuration
+# ---------------------------------------------------------------------------
+
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+
+# ArcGIS SDK project settings may contain environment/service configuration.
+**/ArcGISProjectSettingsAsset.asset

@@ -1,286 +1,178 @@
-# Louisbourg Archaeological LiDAR Explorer
+# Fortress of Louisbourg LiDAR Explorer
 
-An interactive 3D GIS project exploring the archaeological landscape of
-the Fortress of Louisbourg National Historic Site, Nova Scotia, using
-airborne LiDAR, ArcGIS Pro, and the ArcGIS Maps SDK for Unity.
+An interactive 3D LiDAR exploration application for the **Fortress of Louisbourg National Historic Site, Nova Scotia**, built with **ArcGIS Pro** and the **ArcGIS Maps SDK for Unity**.
 
-![Louisbourg point cloud in Unity](outputs/screenshots/louisbourg_unity_pointcloud.png)
+The project takes a large classified LiDAR dataset through GIS preparation, RGB colourization, point cloud scene layer packaging, and deployment into a standalone Unity application with multiple visualization modes, point class filtering, predefined viewpoints, and dynamic legends.
 
-## Project Overview
+> **Portfolio repository:** this public repository is intentionally curated. It documents the end-to-end workflow and includes selected renderer implementations, while large geospatial datasets and the application's core runtime orchestration remain excluded.
 
-The project develops an end-to-end 3D geospatial workflow from raw
-airborne LiDAR through GIS processing, quality assurance, scene-layer
-generation, and interactive visualization in Unity.
+## Download
 
-The study area includes the reconstructed Fortress of Louisbourg and
-its surrounding archaeological landscape.
+A packaged **Windows 64-bit build** is available from the project's latest GitHub Release.
 
-The project is designed to demonstrate practical experience with:
+**[Download the latest Windows build](RELEASE_URL_HERE)**
 
-- LiDAR and point-cloud QA/QC
-- LAS classification and editing
-- coordinate and vertical reference systems
-- terrain generation
-- ArcGIS 3D scene workflows
-- I3S / Point Cloud Scene Layers
-- ArcGIS Maps SDK for Unity
-- 3D GIS application development
+The release includes the processed point cloud scene layer required by the application. Unity and ArcGIS Pro are not required to run the packaged build.
+
+## Project Highlights
+
+- Processed approximately **239 million LiDAR points** across the project area.
+- Prepared and QA/QC'd classified LAS/LAZ data in **ArcGIS Pro**.
+- Applied orthophoto-derived **RGB colourization** to the LiDAR point cloud.
+- Packaged the final point cloud as an **I3S/SLPK point cloud scene layer**.
+- Integrated the scene layer into Unity using the **ArcGIS Maps SDK for Unity**.
+- Implemented four visualization modes:
+  - **RGB / true colour**
+  - **Classification**
+  - **Elevation**
+  - **Intensity**
+- Added interactive point class filtering, predefined viewpoints, transition effects, and a visualization-aware dynamic legend.
+- Produced a portable Windows build that carries its point cloud data with the application.
+
+## Workflow
+
+```mermaid
+flowchart LR
+    A[Classified LAZ] --> B[ArcGIS Pro]
+    C[Orthophoto] --> B
+    B --> D[LiDAR QA/QC and AOI Processing]
+    D --> E[RGB Colourization]
+    E --> F[Point Cloud Scene Layer / SLPK]
+    F --> G[ArcGIS Maps SDK for Unity]
+    G --> H[Interactive 3D Explorer]
+    H --> I[Standalone Windows Build]
+```
+
+The GIS-to-application workflow was designed as a single pipeline rather than as separate visualization exercises. ArcGIS Pro handled spatial preparation and scene layer generation, while Unity provided the interactive exploration environment.
+
+## Visualization Modes
+
+### RGB
+
+Displays the orthophoto-derived colour values stored with the point cloud for a more intuitive representation of the site.
+
+### Classification
+
+Visualizes LAS classification values as discrete categories for interpreting the physical structure of the landscape.
+
+### Elevation
+
+Uses a continuous colour ramp to visualize elevation differences across the site.
+
+### Intensity
+
+Uses a grayscale stretch to visualize LiDAR return intensity.
+
+The public source samples in this repository demonstrate the renderer configuration for each of these modes.
+
+## Application Features
+
+- Runtime switching between RGB, classification, elevation, and intensity visualization
+- Interactive filtering of point cloud classes
+- Resettable class visibility
+- Predefined site viewpoints
+- Smooth visual transitions between renderer, filter, and viewpoint changes
+- Dynamic legend content that follows the active visualization mode
+- Self-contained point cloud delivery in the standalone build
+- Keyboard and UI controls for common actions
 
 ## Technology
 
+**GIS**
 - ArcGIS Pro
-- ArcGIS 3D Analyst
-- ArcGIS Maps SDK for Unity
+- LAS/LAZ point cloud workflows
+- I3S / Scene Layer Packages (SLPK)
+- Spatial reference handling and QA/QC
+- Orthophoto LAS colourization
+
+**Application Development**
 - Unity
+- ArcGIS Maps SDK for Unity
 - C#
-- Python / ArcPy
-- Git / GitHub
+- Unity UI / TextMesh Pro
+- Unity Input System
+- Shader-based and captured frame transitions
 
-## Data Sources
+## Public Source Samples
 
-### LiDAR
+The public repository includes selected C# renderer implementations:
 
-Government of Nova Scotia provincial LiDAR.
+```text
+unity/LouisbourgExplorer/Assets/Scripts/
+├── ClassificationRenderer.cs
+├── ElevationRenderer.cs
+├── IntensityRenderer.cs
+└── RGBRenderer.cs
+```
 
-Initial source dataset:
+These files demonstrate how the application configures ArcGIS point cloud rendering for categorical, continuous, and RGB attributes.
 
-- Acquisition year: 2018
-- Source format: LAZ
-- Source tiles: 12
-- Source point count: 239,229,210
-- Horizontal reference: NAD 1983 (CSRS) UTM Zone 20N
-- Vertical reference: CGVD2013
+The full application also contains additional runtime systems for point cloud lifecycle management, persistent filtering, transition coordination, UI generation, and viewpoint control. Those implementation details are intentionally not included in the public portfolio repository.
 
-Original source classifications included:
+## Data and Repository Scope
 
-- Class 2 — Ground
-- Class 3 — Low Vegetation
-- Class 4 — Medium Vegetation
-- Class 5 — High Vegetation
-- Class 9 — Water
-- Class 17 — Bridge Deck
+The raw and processed geospatial datasets are intentionally excluded from Git because of their size and because the repository is intended as a portfolio presentation rather than a data distribution package.
 
-### Orthophotography
+Development data included:
 
-Nova Scotia Orthophotomap Database (NSODB).
+- classified LAZ point cloud tiles
+- orthophoto imagery
+- processed LAS datasets
+- derived scene layer content
+- the final SLPK used by the standalone application
 
-Current imagery over the study area was acquired in 2024 and is used for:
+Source and provenance information is documented in [`references/sources.md`](references/sources.md).
 
-- LiDAR QA/QC
-- building and feature validation
-- spatial alignment checks
-- planned RGB point-cloud colorization
+## Media
 
-The 2024 orthophoto tile covering the primary project area is:
+Final screenshots and a short project demonstration will be added here.
 
-`1045850059900`
+<!--
+### RGB Overview
 
-The imagery postdates the LiDAR acquisition by six years. This temporal
-difference will be retained in the project metadata and considered during
-RGB colorization and QA.
+![RGB Overview](outputs/screenshots/rgb-overview.png)
 
-### Transportation
+### Classification
 
-The Nova Scotia Road Network (NSRN) was reviewed as an authoritative
-transportation reference within the study area.
+![Classification](outputs/screenshots/classification.png)
 
-The network generally aligned with the 2024 orthophotography, although
-some road and path geometry differed from current visible conditions.
+### Elevation
 
-## LiDAR QA/QC
+![Elevation](outputs/screenshots/elevation.png)
 
-Initial inspection identified apparent classification anomalies within
-the reconstructed fortress.
+### Intensity
 
-Several non-vegetated building surfaces had been classified as medium or
-high vegetation. Building footprints were digitized using orthophotography,
-LiDAR elevation structure, and visual interpretation as independent
-reference information.
+![Intensity](outputs/screenshots/intensity.png)
 
-Because the original compressed LAZ files could not be edited directly,
-the project AOI was extracted to uncompressed LAS working files. Confirmed
-building returns were then selectively reclassified to:
+### Demo
 
-**LAS Class 6 — Building**
+[Watch the project demo](VIDEO_URL_HERE)
+-->
 
-Grass-covered fortification surfaces, including portions of the King's
-Bastion, were intentionally excluded from blanket building
-reclassification because the actual LiDAR returns represent vegetation
-even where the vegetation forms part of a built heritage structure.
+## Repository Structure
 
-This preserves the distinction between:
+```text
+.
+├── outputs/
+│   └── screenshots/
+├── references/
+│   └── sources.md
+└── unity/
+    └── LouisbourgExplorer/
+        └── Assets/
+            └── Scripts/
+                ├── ClassificationRenderer.cs
+                ├── ElevationRenderer.cs
+                ├── IntensityRenderer.cs
+                └── RGBRenderer.cs
+```
 
-- the physical surface represented by a LiDAR return; and
-- the semantic meaning of the archaeological feature.
+## Project Status
 
-Road and walkway areas were also reviewed against the NSRN,
-orthophotography, and point cloud. Most transportation surfaces within
-the site are unpaved dirt or cleared ground and were already classified
-as:
+**Complete — v1.0.0**
 
-**LAS Class 2 — Ground**
+The application has been tested as a standalone Windows build with the development data drive disconnected, confirming that the release package is self-contained.
 
-Because this classification accurately represents the measured surface,
-no road-surface reclassification was applied.
+## License
 
-The QA/QC workflow therefore prioritizes correction only where the source
-classification is demonstrably inconsistent with the observed surface.
-
-## Terrain Processing
-
-A focused project Area of Interest was extracted from the original
-provincial LiDAR coverage.
-
-Ground-classified returns were used to generate a:
-
-**1 metre bare-earth Digital Elevation Model**
-
-The DEM provides a terrain surface independent of buildings and
-vegetation and will support later terrain visualization and Unity
-elevation integration.
-
-## Coordinate System and Scene Preparation
-
-The source LiDAR uses:
-
-- NAD 1983 (CSRS) UTM Zone 20N for horizontal coordinates
-- CGVD2013 for elevations
-
-During Point Cloud Scene Layer preparation, the source vertical
-coordinate system required an explicit recognized definition for scene
-layer generation.
-
-A scene-ready LAS Dataset was therefore created using:
-
-- Horizontal CRS: NAD 1983 (CSRS) UTM Zone 20N — WKID 2961
-- Vertical CRS: CGVD2013(CGG2013) height — WKID 6647
-
-The underlying point coordinates were not transformed. The explicit
-spatial-reference definition was added so the scene-layer workflow could
-correctly validate the relationship between horizontal and vertical
-units.
-
-## Point Cloud Scene Layer
-
-The processed LiDAR was packaged in ArcGIS Pro as a local Point Cloud
-Scene Layer Package (`.slpk`).
-
-Cached point attributes include:
-
-- classification code
-- intensity
-- return information
-
-The resulting scene layer was validated in an ArcGIS Pro Local Scene
-before being transferred to Unity.
-
-Large generated scene packages and source geospatial datasets are not
-stored in the Git repository.
-
-## ArcGIS Maps SDK for Unity
-
-The Point Cloud Scene Layer was successfully integrated into Unity using
-the ArcGIS Maps SDK for Unity.
-
-The Unity scene currently uses:
-
-- a Local ArcGIS Map
-- the same projected spatial reference as the source GIS data
-- a local Point Cloud Scene Layer Package
-- an ArcGIS-aware camera
-- no external basemap or online elevation dependency
-
-The initial integration confirmed that the processed Louisbourg point
-cloud can be rendered at its real-world scale and location directly from
-the ArcGIS scene-layer workflow.
-
-This establishes the working pipeline:
-
-Raw LAZ  
-→ LAS Dataset  
-→ QA/QC and classification correction  
-→ AOI extraction  
-→ bare-earth terrain  
-→ Point Cloud Scene Layer  
-→ ArcGIS Maps SDK for Unity
-
-## Project Structure
-
-    gis/
-        ArcGIS Pro project and supporting GIS configuration
-
-    unity/
-        Unity application
-
-    scripts/
-        Python / ArcPy utilities
-
-    data/
-        raw/
-        staging/
-        processed/
-
-    outputs/
-        maps/
-        screenshots/
-        video/
-        web/
-
-    docs/
-        workflow/
-        figures/
-        portfolio/
-
-    references/
-        metadata/
-        historic_maps/
-
-Large source and derived geospatial datasets are intentionally excluded
-from version control.
-
-## Current Status
-
-### Completed
-
-- Project and repository setup
-- 2018 provincial LiDAR acquisition
-- LAS Dataset creation and initial QA/QC
-- Focused archaeological AOI definition
-- AOI extraction
-- Conversion from LAZ to editable LAS
-- Building-footprint digitization
-- Selective building reclassification to LAS Class 6
-- Road and walkway classification review
-- 2024 orthophoto integration for QA/QC
-- 1 m bare-earth DEM generation
-- Scene-ready horizontal and vertical CRS preparation
-- Point Cloud Scene Layer Package generation
-- ArcGIS Pro Local Scene validation
-- Successful ArcGIS Maps SDK for Unity integration
-- Local Unity camera and projected map configuration
-
-### In Progress
-
-- Acquisition of 2024 orthophoto GeoTIFF
-- RGB LiDAR colorization
-- Local terrain integration in Unity
-
-### Planned
-
-- Final RGB Point Cloud Scene Layer
-- Unity terrain/elevation surface
-- navigation and camera controls
-- analytical layer and visualization controls
-- project UI and interaction design
-- public-facing project demonstration
-- technical workflow documentation
-
-## Goal
-
-The final application will provide an interactive 3D exploration of
-Louisbourg using measured LiDAR, derived terrain, and contextual GIS
-data.
-
-The project demonstrates a workflow spanning source-data QA/QC,
-coordinate-system management, point-cloud processing, terrain modelling,
-3D GIS delivery, and custom Unity application development.
+See [`LICENSE`](LICENSE) for repository licensing information.

@@ -109,7 +109,7 @@ unity/LouisbourgExplorer/Assets/Scripts/
 
 These files demonstrate how the application configures ArcGIS point cloud rendering for categorical, continuous, and RGB attributes.
 
-The full application also contains additional runtime systems for point cloud lifecycle management, persistent filtering, transition coordination, UI generation, and viewpoint control. Those implementation details are intentionally not included in the public portfolio repository.
+The full application also contains additional runtime systems for point cloud lifecycle management, persistent filtering, transition coordination, UI generation, and viewpoint control. 
 
 ## Data and Repository Scope
 
@@ -126,9 +126,6 @@ Development data included:
 Source and provenance information is documented in [`references/sources.md`](references/sources.md).
 
 ## Media
-
-Final screenshots and a short project demonstration will be added here.
-
 
 ### RGB Overview
 

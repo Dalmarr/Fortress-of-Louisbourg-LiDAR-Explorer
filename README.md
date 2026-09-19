@@ -2,6 +2,8 @@
 
 An interactive 3D LiDAR exploration application for the **Fortress of Louisbourg National Historic Site, Nova Scotia**, built with **ArcGIS Pro** and the **ArcGIS Maps SDK for Unity**.
 
+![Title Image](outputs/screenshots/titleImage.png)
+
 The project takes a large classified LiDAR dataset through GIS preparation, RGB colourization, point cloud scene layer packaging, and deployment into a standalone Unity application with multiple visualization modes, point class filtering, predefined viewpoints, and dynamic legends.
 
 > **Portfolio repository:** this public repository is intentionally curated. It documents the end-to-end workflow and includes selected renderer implementations, while large geospatial datasets and extraneous application architecture remain excluded.

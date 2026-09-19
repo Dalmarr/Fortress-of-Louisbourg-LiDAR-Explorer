@@ -4,7 +4,7 @@ An interactive 3D LiDAR exploration application for the **Fortress of Louisbourg
 
 The project takes a large classified LiDAR dataset through GIS preparation, RGB colourization, point cloud scene layer packaging, and deployment into a standalone Unity application with multiple visualization modes, point class filtering, predefined viewpoints, and dynamic legends.
 
-> **Portfolio repository:** this public repository is intentionally curated. It documents the end-to-end workflow and includes selected renderer implementations, while large geospatial datasets and the application's core runtime orchestration remain excluded.
+> **Portfolio repository:** this public repository is intentionally curated. It documents the end-to-end workflow and includes selected renderer implementations, while large geospatial datasets and extraneous application architecture remain excluded.
 
 ## Download
 
@@ -35,15 +35,15 @@ The release includes the processed point cloud scene layer required by the appli
 flowchart LR
     A[Classified LAZ] --> B[ArcGIS Pro]
     C[Orthophoto] --> B
-    B --> D[LiDAR QA/QC and AOI Processing]
+    B --> D[LiDAR QA/QC and AOI]
     D --> E[RGB Colourization]
-    E --> F[Point Cloud Scene Layer / SLPK]
+    E --> F[Point Cloud Scene Layer]
     F --> G[ArcGIS Maps SDK for Unity]
     G --> H[Interactive 3D Explorer]
     H --> I[Standalone Windows Build]
 ```
 
-The GIS-to-application workflow was designed as a single pipeline rather than as separate visualization exercises. ArcGIS Pro handled spatial preparation and scene layer generation, while Unity provided the interactive exploration environment.
+The GIS-to-Unity workflow was designed as a single pipeline rather than as separate visualization exercises. ArcGIS Pro handled spatial preparation and scene layer generation, while Unity provided the interactive exploration environment.
 
 ## Visualization Modes
 
@@ -91,7 +91,7 @@ The public source samples in this repository demonstrate the renderer configurat
 - C#
 - Unity UI / TextMesh Pro
 - Unity Input System
-- Shader-based and captured frame transitions
+- Shader Graph and captured frame transitions
 
 ## Public Source Samples
 
@@ -111,7 +111,7 @@ The full application also contains additional runtime systems for point cloud li
 
 ## Data and Repository Scope
 
-The raw and processed geospatial datasets are intentionally excluded from Git because of their size and because the repository is intended as a portfolio presentation rather than a data distribution package.
+The raw and processed geospatial datasets are intentionally excluded from Git because of their size and because the repository is intended as a presentation rather than a data distribution package.
 
 Development data included:
 

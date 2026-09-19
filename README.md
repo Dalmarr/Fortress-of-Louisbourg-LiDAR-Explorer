@@ -127,7 +127,7 @@ Source and provenance information is documented in [`references/sources.md`](ref
 
 Final screenshots and a short project demonstration will be added here.
 
-<!--
+
 ### RGB Overview
 
 ![RGB Overview](outputs/screenshots/rgb-overview.png)
@@ -143,7 +143,7 @@ Final screenshots and a short project demonstration will be added here.
 ### Intensity
 
 ![Intensity](outputs/screenshots/intensity.png)
-
+<!--
 ### Demo
 
 [Watch the project demo](VIDEO_URL_HERE)

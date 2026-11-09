@@ -10,7 +10,7 @@ The project takes a large classified LiDAR dataset through GIS preparation, RGB 
 
 A packaged **Windows 64-bit build** is available from the project's latest GitHub Release.
 
-**[Download the latest Windows build](RELEASE_URL_HERE)**
+**[Download the latest Windows build](https://github.com/Dalmarr/Fortress-of-Louisbourg-LiDAR-Explorer/releases/download/v1.0.0/Fortress-Of-Louisbourg-LiDAR-Explorer-v1.0_Windows.zip)**
 
 The release includes the processed point cloud scene layer required by the application. Unity and ArcGIS Pro are not required to run the packaged build.
 
